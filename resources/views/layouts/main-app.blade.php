@@ -207,6 +207,32 @@
                     </div>
 
                     @if(Auth::check())
+                        <div class="col-xl-3 col-lg-2">
+                            <div class="header-right-wrap header-right-flex">
+                                <div class="same-style header-wishlist">
+                                    <a href="wishlist.html"><i class="fa fa-heart-o"></i></a>
+                                </div>
+                                <div class="same-style cart-wrap">
+{{--                                    <a href="{{route('user.show_cart')}}" id="my_cart">--}}
+                                    <a href="#" id="my_cart">
+                                        <i class="dlicon shopping_cart-modern"></i>
+                                        <span class="count-style">
+{{--                                            @if(session()->get('size'))--}}
+{{--                                                {{session()->get('size')}}--}}
+{{--                                            @else--}}
+{{--                                                0--}}
+{{--                                            @endif--}}
+                                        </span>
+                                    </a>
+                                </div>
+                                <div class="row">
+                                    <div class="col-lg-12">
+                                        {{--                                {{Session::get('cart')}}--}}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
                     @else
                     <div class="col-xl-3 col-lg-2">
                         <div class="header-right-wrap header-right-flex">
