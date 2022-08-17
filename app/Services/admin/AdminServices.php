@@ -4,11 +4,21 @@ namespace App\Services\admin;
 
 use App\Mail\TestMail;
 use App\Models\User;
+use http\Env\Request;
+use Illuminate\Support\Facades\Auth;
 use Nexmo\Laravel\Facade\Nexmo;
 
 
 class AdminServices
 {
+
+    public function loginAuth($request)
+    {
+        $credentials = ['email' => $request->input('email'), 'password' => $request->input('password')];
+        if (Auth::attempt($credentials)) {
+            $request->session()->regenerate();
+        }
+    }
     public function sendVerificationEmail()
     {
 

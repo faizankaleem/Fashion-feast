@@ -27,6 +27,13 @@ Route::get('/', function () {
 require __DIR__.'/auth.php';
 
 
+Route::get('admin-login'  , [AdminController::class , 'login'])->name('admin-login');
+Route::post('admin-auth' , [AdminController::class , 'loginAuth'])->name('admin-auth');
+Route::prefix('admin')->group(function ()
+{
+    Route::get('dashboard' , [AdminController::class , 'dashboard'])->name('dashboard');
+});
+
 Route::get('dashboard'             ,[UserController::class,'dashboard'])->name('user_dashboard');
 Route::get('logout'                ,[UserController::class, 'logout'])->name('logout');
 Route::get('send-email'            ,[AdminController::class,'sendVerificationEmail'])->name('send-email');
