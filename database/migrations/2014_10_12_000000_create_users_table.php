@@ -26,6 +26,9 @@ class CreateUsersTable extends Migration
             //is_verify ka colum is waja se banaya kay user jaab register hota hai to jaab woh link me
 //             click karay ga to woh verify customer ho ga
             $table->unsignedInteger('is_verified')->default(0);
+            $table->string('otp')->nullable();
+            $table->string('otp_created_at')->nullable();
+            $table->string('otp_verified_at')->nullable();
             $table->unsignedBigInteger('role_id');
             $table->rememberToken();
             $table->timestamps();
