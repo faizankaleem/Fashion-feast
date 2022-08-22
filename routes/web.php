@@ -1,5 +1,8 @@
 <?php
 
+use App\Http\Controllers\admin\AdminCategoryController;
+use App\Http\Controllers\admin\AdminSubCategoryController;
+use App\Http\Controllers\admin\AdminProductController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\user\UserController;
 use App\Http\Controllers\admin\AdminController;
@@ -31,6 +34,18 @@ Route::post('admin-auth' , [AdminController::class , 'loginAuth'])->name('admin-
 Route::prefix('admin')->group(function ()
 {
     Route::get('dashboard' , [AdminController::class , 'dashboard'])->name('dashboard');
+
+    Route::get('create-category' , [AdminCategoryController::class , 'create'])->name('create-category');
+    Route::post('store-category' , [AdminCategoryController::class , 'store'])->name('store-category');
+
+    Route::get('create-subCategory' , [AdminSubCategoryController::class ,'create'])->name('create-subCategory');
+    Route::post('store-subCategory' , [AdminSubCategoryController::class , 'store'])->name('store-subCategory');
+
+    Route::get('create-product' , [AdminProductController::class, 'create'])->name('create-product');
+    Route::post('store-product' , [AdminProductController::class , 'store'])->name('store-product');
+
+
+
 });
 
 Route::get('dashboard'             ,[UserController::class,'dashboard'])->name('user_dashboard');
