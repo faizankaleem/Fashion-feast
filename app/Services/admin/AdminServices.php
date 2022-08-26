@@ -17,6 +17,11 @@ class AdminServices
         $credentials = ['email' => $request->input('email'), 'password' => $request->input('password')];
         if (Auth::attempt($credentials)) {
             $request->session()->regenerate();
+            return 1;
+        }
+        else
+        {
+            return 0;
         }
     }
     public function sendVerificationEmail()

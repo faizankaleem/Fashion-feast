@@ -46,11 +46,12 @@
                     </span>
                 </a>
             </li>
+            {{--Category--}}
             <li class="menu-item has-submenu">
                 <a class="menu-link" href="#">
                     <i class="icon material-icons md-add_box"></i>
                     <span class="text">
-                        {{trans('translations.admin.admin_app.add_product')}}
+                        {{trans('translations.admin.add_category.main_title')}}
 
                     </span>
                 </a>
@@ -59,32 +60,48 @@
                         {{trans('translations.admin.admin_app.add_category')}}
 
                     </a>
-                    <a href="{{route('create-subCategory')}}">
-                        {{trans('translations.admin.admin_app.add_sub_category')}}
-
-                    </a>
-                    <a href="{{route('create-product')}}">
-                        {{trans('translations.admin.admin_app.add_product')}}
+                    <a href="{{route('show-category')}}">
+                        {{trans('translations.admin.admin_app.all_categories')}}
                     </a>
 
                 </div>
             </li>
 
+            {{--Sub Category--}}
+            <li class="menu-item has-submenu">
+                <a class="menu-link" href="#">
+                    <i class="icon material-icons md-add_box"></i>
+                    <span class="text">
+                        {{trans('translations.admin.admin_app.subcategory')}}
+
+                    </span>
+                </a>
+                <div class="submenu">
+                    <a href="{{route('create-subCategory')}}">
+                        {{trans('translations.admin.admin_app.add_subcategory')}}
+
+                    </a>
+                    <a href="{{route('show-subCategory')}}">
+                        {{trans('translations.admin.admin_app.all_subcategories')}}
+                    </a>
+                </div>
+            </li>
 
 
+            {{--Product--}}
             <li class="menu-item has-submenu">
                 <a class="menu-link" href="#">
                     <i class="icon material-icons md-shopping_bag"></i>
                     <span class="text">
-                        {{trans('translations.admin.admin_app.product')}}
+                        {{trans('translations.admin.admin_app.products')}}
                     </span>
                 </a>
                 <div class="submenu">
-                    <a href="#">
-                        {{trans('translations.admin.admin_app.product_list_view')}}
+                    <a href="{{route('create-product')}}">
+                        {{trans('translations.admin.admin_app.add_products')}}
                     </a>
-                    <a href="#">
-                        {{trans('translations.admin.admin_app.product_grid_view')}}
+                    <a href="{{route('show-product')}}">
+                        {{trans('translations.admin.admin_app.all_products')}}
 
                     </a>
 
@@ -171,7 +188,7 @@
 <main class="main-wrap">
     <header class="main-header navbar">
         <div class="col-search">
-           
+
         </div>
         <div class="col-nav">
             <button class="btn btn-icon btn-mobile me-auto" data-trigger="#offcanvas_aside"> <i class="material-icons md-apps"></i> </button>
@@ -206,7 +223,7 @@
                         <a class="dropdown-item" href="#"><i class="material-icons md-receipt"></i>Billing</a>
                         <a class="dropdown-item" href="#"><i class="material-icons md-help_outline"></i>Help center</a>
                         <div class="dropdown-divider"></div>
-                        <a class="dropdown-item text-danger" href="#"><i class="material-icons md-exit_to_app"></i>Logout</a>
+                        <a class="dropdown-item text-danger" href="{{route('admin-logout')}}"><i class="material-icons md-exit_to_app"></i>Logout</a>
                     </div>
                 </li>
             </ul>

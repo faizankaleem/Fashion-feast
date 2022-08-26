@@ -20,6 +20,11 @@
                         <div class="card shadow-lg border-0 rounded-lg mt-5">
                             <div class="card-header"><h3 class="text-center font-weight-light my-4">{{{trans('translations.admin.login.formTitle')}}}</h3></div>
                             <div class="card-body">
+                                @if(Session::has('message'))
+                                    <div class="alert alert-danger alert-dismissible" role="alert">
+                                        <strong>{{Session('message')}}</strong>
+                                    </div>
+                                @endif
                                 <form action="{{route('admin-auth')}}" method="post">
                                     @csrf
                                     <div class="form-floating mb-3">
@@ -54,11 +59,17 @@
         <footer class="py-4 bg-light mt-auto">
             <div class="container-fluid px-4">
                 <div class="d-flex align-items-center justify-content-between small">
-                    <div class="text-muted">Copyright &copy; Your Website 2022</div>
+                    <div class="text-muted">
+                        {{trans('translations.admin.login.footer_string_one')}}
+                    </div>
                     <div>
-                        <a href="#">Privacy Policy</a>
+                        <a href="#">
+                            {{trans('translations.admin.login.footer_string_two')}}
+                        </a>
                         &middot;
-                        <a href="#">Terms &amp; Conditions</a>
+                        <a href="#">
+                            {{trans('translations.admin.login.footer_string_three')}}
+                        </a>
                     </div>
                 </div>
             </div>

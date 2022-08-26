@@ -1,6 +1,6 @@
 @extends('admin.admin-app')
 
-@section('title' , trans('translations.admin.add_sub_category.title'))
+@section('title' , trans('translations.admin.show_category.all_subcategories_title'))
 
 @section('content')
     <section class="content-main">
@@ -15,15 +15,15 @@
                         </div>
                     @endif
                     <div class="card-header">
-
-                        <h3>{{trans('translations.admin.add_sub_category.title')}}</h3>
+                        <h3>{{trans('translations.admin.show_category.all_subcategories_title')}}</h3>
                     </div>
                     <div class="card-body">
-                        <form action="{{route('store-subCategory')}}" method="POST">
+                        <form action="{{route('update-sub-category')}}" method="POST">
                             @csrf
+                            <input type="hidden" value="{{$sub_category->id}}" name="id">
                             <div class="mb-4">
                                 <label for="product_name" class="form-label">{{trans('translations.admin.add_sub_category.subCategoryName')}}</label>
-                                <input type="text" name="name" placeholder="Category Name" class="form-control">
+                                <input type="text" name="name" placeholder="Category Name" class="form-control" value="{{$sub_category->name}}">
                                 @if ($errors->has('name'))
                                     <span class="text-danger">
                                             {{ $errors->first('name') }}
@@ -42,7 +42,7 @@
 
                                     </option>
                                     @foreach($categories as $category)
-                                        <option value="{{$category->id}}"> {{$category->name}} </option>
+                                        <option {{$sub_category->category->id == $category->id ?'selected' : ''}} value="{{$category->id}}"> {{$category->name}} </option>
                                     @endforeach
                                     @if ($errors->has('category_id'))
                                         <span class="text-danger">

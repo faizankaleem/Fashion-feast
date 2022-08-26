@@ -5,6 +5,7 @@ $(document).ready(function()
     $('#img-2').hide();
     $('#img-3').hide();
     $('#img-4').hide();
+
 })
 // this is to hide image input field in add product form when we click add new image button
 $('#add_more_button').on("click" , function ()

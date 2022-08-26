@@ -4,7 +4,7 @@ namespace App\Http\Requests\admin;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class AddSubcategoryRequest extends FormRequest
+class UpdateCategoryRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -25,15 +25,6 @@ class AddSubcategoryRequest extends FormRequest
     {
         return [
             'name' => 'required',
-            'category_id' => 'required',
-        ];
-    }
-
-    public function messages()
-    {
-        return[
-            'name.required' => trans('translations.update_sub_category_name'),
-            'category_id.required' => trans('translations.category_id_required'),
         ];
     }
 }

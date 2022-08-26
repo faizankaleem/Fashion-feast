@@ -6,6 +6,7 @@ namespace App\Services\admin;
 use App\Models\Product;
 use App\Models\ProductImage;
 use App\Models\SubCategory;
+use http\Env\Request;
 
 class ProductService{
 
@@ -40,14 +41,35 @@ class ProductService{
 
         if($request->hasFile('img'))
         {
-            $size = count($request->file('img'));
-            for($i = 0 ;$i < $size ; $i++)
-            {
-                $file_name = time().rand(1,1000).'.'.$request->file('img')[$i]->extension();
-                $request->file('img')[$i]->move('uploads/products/',$file_name);
-                ProductImage::insert(['image' => $file_name , 'product_id' => $product_id]);
-            }
+            uploadMultipleProductImages($request,$product_id);
         }
 
+    }
+
+    public function updateProduct($request)
+    {
+        $subCategoryId = '';
+        $current_price = $request->input('reg_price') - $request->input('discounted_price');
+        $subcategory = SubCategory::where('name' , $request->input('subcategory'))->first();
+        if ($subcategory == null)
+        {
+            $subCategoryId = SubCategory::insertGetId(['name' => $request->input('subcategory'), 'category_id' => $request->input('category')]);
+        }
+        $subCategoryId = $subcategory->id;
+        $product = Product::find($request->product_id);
+        $product->title = $request->input('title');
+        $product->description = $request->input('description');
+        $product->total_stock = $request->input('stock');
+        $product->regular_price = $request->input('reg_price');
+        $product->discounted_price = $request->input('discounted_price');
+        $product->current_price =  $current_price;
+        $product->sub_category_id = $subCategoryId;
+        $product->category_id = $request->input('category');
+        $product->save();
+
+        if($request->hasFile('img'))
+        {
+            uploadMultipleProductImages($request,$request->input('product_id'));
+        }
     }
 }

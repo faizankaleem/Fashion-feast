@@ -28,7 +28,7 @@ class AddProductsRequest extends FormRequest
             'description' => 'required',
             'stock' => 'required|numeric',
             'reg_price' => 'required|numeric',
-            'discounted_price' => 'required|numeric',
+            'discounted_price' => 'required|numeric|lt:reg_price',
             'category' => 'required',
             'subcategory' => 'required',
             'img[]' => 'mimes:jpg,png',

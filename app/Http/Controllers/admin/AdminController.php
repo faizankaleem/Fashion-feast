@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\LoginRequest;
 use App\Services\admin\AdminServices;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class AdminController extends Controller
 {
@@ -19,11 +20,25 @@ class AdminController extends Controller
     {
         return view('admin.login');
     }
+    public function logout()
+    {
+        Auth::logout();
+        return redirect()->route('admin-login');
+    }
 
     public function loginAuth(LoginRequest $request)
     {
-        $this->service->loginAuth($request);
-        return redirect()->route('dashboard');
+        $response = $this->service->loginAuth($request);
+        if($response == 0)
+        {
+            return redirect()->back()->with(['message' => trans('translations.invalid_credentials')]);
+        }
+        else
+        {
+
+            return redirect()->route('dashboard');
+        }
+
     }
     public function dashboard()
     {
