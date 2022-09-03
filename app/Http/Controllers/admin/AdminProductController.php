@@ -21,8 +21,9 @@ class AdminProductController extends Controller
 
     public function create()
     {
-        $category = Category::all();
-        return view('admin.products.add-product',compact('category'));
+        $categories = Category::with('subCategories')->get();
+        $subcategories = SubCategory::all();
+        return view('admin.products.add-product',compact('categories','subcategories'));
     }
 
     public function store(AddProductsRequest $request)

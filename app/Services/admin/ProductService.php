@@ -13,20 +13,22 @@ class ProductService{
     public function storeProduct($request)
     {
 
-        $subCategoryId = '';
+;//        $subCategoryId = '';
         $current_price = $request->input('reg_price') - $request->input('discounted_price');
-        $subcategory = SubCategory::where('name' , $request->input('subcategory'))->first();
-        if ($subcategory == null)
-        {
-            $subCategoryId = SubCategory::insertGetId([
-                'name' => $request->input('subcategory'),
-                'category_id' => $request->input('category'),
-            ]);
-        }
-        else
-        {
-            $subCategoryId = $subcategory->id;
-        }
+////        $subcategory = SubCategory::where('name' , $request->input('subcategory'))->first();
+//          $subcategory = SubCategory::find($request->input('subcategory'));
+//
+//        if ($subcategory == null)
+//        {
+//            $subCategoryId = SubCategory::insertGetId([
+//                'name' => $request->input('subcategory'),
+//                'category_id' => $request->input('category'),
+//            ]);
+//        }
+//        else
+//        {
+//            $subCategoryId = $subcategory->id;
+//        }
         $product_id = Product::insertGetId([
             'title' => $request->input('title'),
             'description' => $request->input('description'),
@@ -34,7 +36,7 @@ class ProductService{
             'regular_price' => $request->input('reg_price'),
             'discounted_price' => $request->input('discounted_price'),
             'current_price' => $current_price,
-            'sub_category_id' => $subCategoryId,
+            'sub_category_id' =>$request->input('subcategory'),
             'category_id' =>$request->input('category'),
 
         ]);

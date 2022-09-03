@@ -53,7 +53,7 @@
                                 <div class="col-lg-4">
                                     <div class="mb-4">
                                         <label class="form-label">{{trans('translations.admin.add_product.total_Qty')}}</label>
-                                        <input placeholder="{{trans('translations.admin.add_product.total_Qty_placeholder')}}" type="text" class="form-control" name="stock"   value="{{old('stock')}}">
+                                        <input placeholder="{{trans('translations.admin.add_product.total_Qty_placeholder')}}" type="number" class="form-control" name="stock"   value="{{old('stock')}}">
                                         @if ($errors->has('stock'))
                                             <span class="text-danger">
                                             {{ $errors->first('stock') }}
@@ -97,8 +97,8 @@
                                         <label class="form-label">{{trans('translations.admin.add_product.category')}} </label>
                                         <select class="form-select" id="cat" name="category">
                                             <option value="" disabled selected>{{trans('translations.admin.add_sub_category.selectCategory')}}   </option>
-                                            @foreach($category as $c)
-                                                <option value="{{$c->id}}"> {{$c->name}} </option>
+                                            @foreach($categories as $category)
+                                                <option value="{{$category->id}}"> {{$category->name}} </option>
                                             @endforeach
                                         </select>
 
@@ -109,10 +109,17 @@
                                         @endif
                                     </div>
                                 </div>
+
                                 <div class="col-lg-6">
                                     <div class="mb-4">
-                                        <label class="form-label">{{trans('translations.admin.add_product.sub_category')}}</label>
-                                        <input type="text" name="subcategory" class="form-control" placeholder="{{trans('translations.admin.add_product.sub_category_placeholder')}}" value="{{old('subcategory')}}">
+                                        <label class="form-label">{{trans('translations.admin.add_product.category')}} </label>
+                                        <select class="form-select" id="cat" name="subcategory">
+                                            <option value="" disabled selected>{{trans('translations.admin.add_sub_category.selectCategory')}}   </option>
+                                            @foreach($subcategories as $subcategory)
+                                                <option value="{{$subcategory->id}}"> {{$subcategory->name}} </option>
+                                            @endforeach
+                                        </select>
+
                                         @if ($errors->has('subcategory'))
                                             <span class="text-danger">
                                             {{ $errors->first('subcategory') }}
@@ -120,6 +127,20 @@
                                         @endif
                                     </div>
                                 </div>
+
+
+{{--                                <div class="col-lg-6">--}}
+{{--                                    <div class="mb-4">--}}
+{{--                                        subcategory--}}
+{{--                                        <label class="form-label">{{trans('translations.admin.add_product.sub_category')}}</label>--}}
+{{--                                        <input type="text" name="subcategory" class="form-control" placeholder="{{trans('translations.admin.add_product.sub_category_placeholder')}}" value="{{old('subcategory')}}">--}}
+{{--                                        @if ($errors->has('subcategory'))--}}
+{{--                                            <span class="text-danger">--}}
+{{--                                            {{ $errors->first('subcategory') }}--}}
+{{--                                            </span>--}}
+{{--                                        @endif--}}
+{{--                                    </div>--}}
+{{--                                </div>--}}
 
                             </div>
 
